@@ -1,12 +1,23 @@
 sap.ui.define([
-    "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast"
- ], function (Controller,MessageToast) {
-    "use strict";
-    return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
-       onShowHello : function () {
-          // show a native JavaScript alert
-          MessageToast.show("Hello mfs");
-       }
-    });
- });
+   "sap/ui/core/mvc/Controller",
+   "sap/m/MessageToast",
+   "sap/ui/model/json/JSONModel"
+], function (Controller, MessageToast, JSONModel) {
+   "use strict";
+   return Controller.extend("sap.ui.demo.walkthrough.controller.App", {
+      onInit: function () {
+         //set data model on view
+         var oData = {
+            recipient: {
+               name: "NAMAE"
+            }
+         };
+         var oModel = new JSONModel(oData);
+         this.getView().setModel(oModel);
+      },
+      onShowHello: function () {
+
+         MessageToast.show("Hello mfs");
+      }
+   });
+});
