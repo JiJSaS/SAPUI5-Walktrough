@@ -14,7 +14,7 @@ sap.ui.define([
             //set data models
             var oData = {
                 recipient: {
-                   name: "NAMAE"
+                   name: "World"
                 }
              };
             var oModel = new JSONModel(oData);
@@ -31,4 +31,4 @@ sap.ui.define([
             this._helloDialogue.open();
         }
     });
-})
+});
