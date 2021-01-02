@@ -20,7 +20,8 @@ sap.ui.define([
                 //load it async XML fragment
                 this.pDialog = Fragment.load({
                     id: oView.getId(),
-                    name: "sap.ui.demo.walkthrough.view.HelloDialogue"
+                    name: "sap.ui.demo.walkthrough.view.HelloDialogue",
+                    controller: this
                 }).then(function(oDialog){
                     //conntect dialog to the root view of component (models + lifecycle)
                     oView.addDependent(oDialog);
@@ -28,7 +29,15 @@ sap.ui.define([
                 });
             }
             this.pDialog.then(function(oDialog){ oDialog.open();});
-        }
+        },
+        onCloseDialogue : function () {
+			// note: We don't need to chain to the pDialog promise, since this event-handler
+			// is only called from within the loaded dialog itself.
+            //this.byId("helloDialog").close();
+
+            //note 2: doesnt work, use promise
+            this.pDialog.then(function(oDialog){ oDialog.close();});
+		}
     });
     
 });
